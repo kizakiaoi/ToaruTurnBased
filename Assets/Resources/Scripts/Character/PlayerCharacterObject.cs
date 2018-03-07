@@ -7,9 +7,10 @@ namespace Character
 {
     public class PlayerCharacterObject : CharacterObject
     {
-        void Awake()
+        override internal void Awake()
         {
-            base.bd = new PlayerCharacterData();
+            base.Awake();
+            base.type = Type.Player;
         }
     }
 

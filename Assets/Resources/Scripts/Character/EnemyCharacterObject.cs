@@ -11,11 +11,6 @@ namespace Character
             //setting the character's type to enemy.
             base.type = Type.Enemy;
         }
-
-        void Start()
-        {
-            this.TakeDamage(10, FindObjectOfType<PlayerCharacterObject>());
-        }
         /// <summary>
         /// give experiance and drop item to the murderer.
         /// </summary>

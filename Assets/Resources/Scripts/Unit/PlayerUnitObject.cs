@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Character
+namespace Unit
 {
-    public class PlayerCharacterObject : CharacterObject
+    public class PlayerUnitObject : UnitObject
     {
         override internal void Awake()
         {

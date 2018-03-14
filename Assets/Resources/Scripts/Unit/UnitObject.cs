@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Character
+namespace Unit
 {
-    public abstract　class CharacterObject : MonoBehaviour
+    public abstract　class UnitObject : MonoBehaviour
     {
         public int level;
         public int totalExp;
@@ -27,7 +27,7 @@ namespace Character
         public delegate void MoveStateChangeHandler();
         public MoveStateChangeHandler OnMoveStateChange;
 
-        public delegate void DeathEventHandler(Transform transform, CharacterObject murderer);
+        public delegate void DeathEventHandler(Transform transform, UnitObject murderer);
         public DeathEventHandler OnDeath;
 
         public delegate void InventoryChangeEvent();
@@ -228,7 +228,7 @@ namespace Character
         /// use for solving damage.
         /// </summary>
         /// <param name="amount"></param>
-        public virtual void TakeDamage(int amount , CharacterObject damageDealer)
+        public virtual void TakeDamage(int amount , UnitObject damageDealer)
         {
             if (amount >= 0)
             {
@@ -306,7 +306,7 @@ namespace Character
         /// </summary>
         /// <param name="transform"></param>
         /// <param name="murderer"></param>
-        public virtual void Death(Transform transform, CharacterObject murderer)
+        public virtual void Death(Transform transform, UnitObject murderer)
         {
             Debug.Log(murderer.name + " has killed " + this.name);
 

@@ -1,39 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Unit
 {
-    public class UnitSelector : MonoBehaviour
+    public class UnitSelector : Singleton<UnitSelector>
     {
-        Camera mainCamera;
-        GameObject selectedUnit;
-
-        // Use this for initialization
-        void Start()
-        {
-            mainCamera = Camera.main;
-        }
+        private GameObject _selectedUnit;
+        public delegate void UnitSelectAction();
+        public static event UnitSelectAction OnSelect;
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetButtonDown("fire"))
+            if (Input.GetMouseButtonDown(0))
             {
                 var hit = new RaycastHit();
-                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
                 {
                     if (hit.transform.gameObject.GetComponent<UnitObject>())
                     {
-                        selectedUnit = hit.transform.gameObject;
+                        Debug.Log(hit.transform.gameObject.name);
+                        _selectedUnit = hit.transform.gameObject;
+                        if(OnSelect != null)
+                        OnSelect();
                     }
 
                     else
                     {
-
                     }
                 }
             }
+        }
+
+        public GameObject GetSelectedUnit()
+        {
+            return _selectedUnit;
         }
     }
 }
